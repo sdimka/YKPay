@@ -1,0 +1,47 @@
+<div mdcHeadline4>Регистрация на...</div>
+<br/>
+<div [mdcElevation]="2">
+<mdc-form-field  fluid >  
+    <mdc-text-field label="Имя" outlined required [(ngModel)] = "currentUser.name"></mdc-text-field>
+    <mdc-helper-text persistent validation>*Required</mdc-helper-text>
+</mdc-form-field>
+
+
+<mdc-form-field fluid>
+    <mdc-text-field label="Фамелия" outlined required [(ngModel)] = "currentUser.surname"></mdc-text-field>
+    <mdc-helper-text persistent validation>*Required</mdc-helper-text>
+</mdc-form-field>
+</div>
+
+<div mdcHeadline5>Хочу учавствовать в номинациях:</div>
+<br/>
+
+<table>
+    <tbody>
+        <tr *ngFor="let list of currentUser.nominations">
+            <td>
+                <mdc-form-field>
+                    <mdc-checkbox [(ngModel)]="list.isSelected" (change)="onChanges()"></mdc-checkbox>
+                    <label>{{list.name}} стоимость участия: {{list.price}} руб.</label>
+                </mdc-form-field>
+
+            </td>
+        </tr>
+    </tbody>
+</table>
+<br/>
+
+<div mdcHeadline5>Итого к оплате по выбранным номинациям: {{sumTotal}} </div>
+
+
+<!-- <mdc-form-field>
+    <mdc-checkbox></mdc-checkbox>
+    <label>Checkbox</label>
+</mdc-form-field> -->
+
+<br/>
+
+
+
+
+<button (click) = "testClick()" mdc-button dense raised>Тестовая кнопка</button>
