@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { User } from './user';
 import { YandexCheckout } from 'yandex-checkout';
-import uuid from 'uuid';
+import { uuid } from 'uuid';
 import { stringify } from 'querystring';
+
+import { DOCUMENT } from '@angular/common';
+import { promise } from 'protractor';
 
 @Component({
     selector: 'app-ykpay',
@@ -29,6 +32,10 @@ export class YkpayComponent implements OnInit {
 
     ngOnInit(): void {
         
+     }
+
+    constructor(@Inject(DOCUMENT) private document: any) {
+            //@Inject(DOCUMENT)
      }
 
     selectCourse(courseNumber: number, part: boolean): void {
@@ -66,29 +73,46 @@ export class YkpayComponent implements OnInit {
 
     
 
-    getInfo(): void {
-        this.IsWait = true;
+    getInfo() {
+        
         let paymentId: string = '23ecf75e-000f-5000-8000-149fe17e1ffa';
-        //let myString: string;
+        let myString1;
+        this.IsWait = true;
         this.check.getPayment(paymentId)
-            .then(function (result) {
-                this.myString = result.id;
-                console.log(result);
-                console.log(this.myString);
-                this.IsWait = false;
+            .then( (result) => {
+                this.goToUrl(result.id);
+                //return result.id;
+                //console.log(result);
+                //console.log(myString1);
+                
                 //let json = result.json();
                 //console.log(getString);
                 
                 //console.log({ payment: result });
             })
-            .catch(function (err) {
+            .catch((err) => {
+                
                 console.error(err);
                 
-            });
-            this.IsWait = false;
+            });   
+            
     }
 
-    
+    testClick2(): void {
+        this.IsWait = true;
+        //this.getInfo().then()
+        this.IsWait = false;
+    }
+
+    getSomeString(): string{
+        return 'someString';
+    }
+
+    goToUrl( urlString : string): void {
+        this.document.location.href = 'https://stackoverflow.com/' + urlString + "/";
+    }
+
+  
     createPayment(): void {
         const idempotenceKey = uuid.v4();
         let description = 'Заказ №2';
