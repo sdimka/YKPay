@@ -1,47 +1,88 @@
-<div mdcHeadline4>Регистрация на...</div>
-<br/>
-<div [mdcElevation]="2">
-<mdc-form-field  fluid >  
-    <mdc-text-field label="Имя" outlined required [(ngModel)] = "currentUser.name"></mdc-text-field>
-    <mdc-helper-text persistent validation>*Required</mdc-helper-text>
-</mdc-form-field>
+<mat-grid-list cols="2" rowHeight="2:1" *ngIf="selectPart">
+    <mat-grid-tile>
+        <div class="example-ripple-container mat-elevation-z4" matRipple [matRippleCentered]="centered"
+            [matRippleDisabled]="disabled" [matRippleUnbounded]="unbounded" [matRippleRadius]="radius" [matRippleColor]="color"
+            (click)="selectCourse(1, true)">
+            Парикмахерское направление
+        </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <div class="example-ripple-container mat-elevation-z4" matRipple [matRippleCentered]="centered"
+            [matRippleDisabled]="disabled" [matRippleUnbounded]="unbounded" [matRippleRadius]="radius" [matRippleColor]="color"
+            (click)="selectCourse(1, true)">
+            Парикмахерское напрвление (Юниоры)
+        </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <div class="example-ripple-container mat-elevation-z4" matRipple [matRippleCentered]="centered"
+            [matRippleDisabled]="disabled" [matRippleUnbounded]="unbounded" [matRippleRadius]="radius" [matRippleColor]="color"
+            (click)="selectCourse(1, true)">
+            Моделирование и дизайн ногтей
+        </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <div class="example-ripple-container mat-elevation-z4" matRipple [matRippleCentered]="centered"
+            [matRippleDisabled]="disabled" [matRippleUnbounded]="unbounded" [matRippleRadius]="radius" [matRippleColor]="color"
+            (click)="selectCourse(1, true)">
+            ВИЗАЖИСТЫ - ЭСТЕТИКА
+        </div>
+    </mat-grid-tile>
+</mat-grid-list>
+
+<div *ngIf="fillForm">
+    <button (click)="selectCourse(0, false)" mdc-button dense raised>Вернуться к выбору направления</button>
+    <div mdcHeadline4>Регистрация на...</div>
+    <br />
+    <div>
+        <mdc-form-field fluid>
+            <mdc-text-field label="Имя" outlined required [(ngModel)]="currentUser.name"></mdc-text-field>
+            <mdc-helper-text persistent validation>*Required</mdc-helper-text>
+        </mdc-form-field>
 
 
-<mdc-form-field fluid>
-    <mdc-text-field label="Фамелия" outlined required [(ngModel)] = "currentUser.surname"></mdc-text-field>
-    <mdc-helper-text persistent validation>*Required</mdc-helper-text>
-</mdc-form-field>
-</div>
+        <mdc-form-field fluid>
+            <mdc-text-field label="Фамелия" outlined required [(ngModel)]="currentUser.surname"></mdc-text-field>
+            <mdc-helper-text persistent validation>*Required</mdc-helper-text>
+        </mdc-form-field>
+    </div>
 
-<div mdcHeadline5>Хочу учавствовать в номинациях:</div>
-<br/>
+    <div mdcHeadline5>Хочу учавствовать в номинациях:</div>
+    <br />
 
-<table>
-    <tbody>
-        <tr *ngFor="let list of currentUser.nominations">
-            <td>
-                <mdc-form-field>
-                    <mdc-checkbox [(ngModel)]="list.isSelected" (change)="onChanges()"></mdc-checkbox>
-                    <label>{{list.name}} стоимость участия: {{list.price}} руб.</label>
-                </mdc-form-field>
+    <table>
+        <tbody>
+            <tr *ngFor="let list of currentUser.nominations">
+                <td>
+                    <mdc-form-field>
+                        <mdc-checkbox [(ngModel)]="list.isSelected" (change)="onChanges()"></mdc-checkbox>
+                        <label>{{list.name}} стоимость участия: {{list.price}} руб.</label>
+                    </mdc-form-field>
 
-            </td>
-        </tr>
-    </tbody>
-</table>
-<br/>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <br />
 
-<div mdcHeadline5>Итого к оплате по выбранным номинациям: {{sumTotal}} </div>
+    <div mdcHeadline5>Итого к оплате по выбранным номинациям: {{sumTotal}} </div>
 
 
-<!-- <mdc-form-field>
+    <!-- <mdc-form-field>
     <mdc-checkbox></mdc-checkbox>
     <label>Checkbox</label>
 </mdc-form-field> -->
 
-<br/>
+    <br />
 
+    <button (click)="testClick()" mdc-button dense raised>Тестовая кнопка</button>
 
+    <br />
 
+    <button (click)="getInfo()" mdc-button dense raised>Get Payment Info</button>
 
-<button (click) = "testClick()" mdc-button dense raised>Тестовая кнопка</button>
+    <br />
+
+    <button (click)="createPayment()" mdc-button dense raised>Create Payment</button>
+</div>
+
+<mat-progress-bar mode="indeterminate" *ngIf="IsWait"></mat-progress-bar>

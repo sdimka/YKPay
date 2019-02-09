@@ -7,6 +7,9 @@ import { FormsModule } from '@angular/forms';
 import { YkpayComponent } from './ykpay/ykpay.component';
 
 import { MaterialModule } from './material.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { AmaterialModule } from './amaterial.module';
 
 
 @NgModule({
@@ -18,9 +21,12 @@ import { MaterialModule } from './material.module';
     AppRoutingModule,
     FormsModule,
 
-    MaterialModule
+    MaterialModule,
 
-    
+    BrowserAnimationsModule,
+
+    AmaterialModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
