@@ -3,4 +3,5 @@ export class Nomination{
     name: string;
     price: number;
     isSelected: boolean;
+    parts: string[];
 }

@@ -9,6 +9,10 @@ import {MatGridListModule} from '@angular/material/grid-list';
 
 import {MatRippleModule} from '@angular/material/core';
 
+import {MatInputModule} from '@angular/material/input';
+
+import {MatCardModule} from '@angular/material/card';
+
 @NgModule({
   exports: [
     BrowserAnimationsModule,
@@ -17,7 +21,9 @@ import {MatRippleModule} from '@angular/material/core';
     MatCheckboxModule,
     MatGridListModule,
     MatRippleModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatInputModule,
+    MatCardModule
 
   ]
 })

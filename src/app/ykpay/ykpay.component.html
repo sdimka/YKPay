@@ -1,29 +1,29 @@
 <mat-grid-list cols="2" rowHeight="2:1" *ngIf="selectPart">
     <mat-grid-tile>
         <div class="example-ripple-container mat-elevation-z4" matRipple [matRippleCentered]="centered"
-            [matRippleDisabled]="disabled" [matRippleUnbounded]="unbounded" [matRippleRadius]="radius" [matRippleColor]="color"
-            (click)="selectCourse(1, true)">
+            [matRippleDisabled]="disabled" [matRippleUnbounded]="unbounded" [matRippleRadius]="radius"
+            [matRippleColor]="color" (click)="selectCourse(1, true)">
             Парикмахерское направление
         </div>
     </mat-grid-tile>
     <mat-grid-tile>
         <div class="example-ripple-container mat-elevation-z4" matRipple [matRippleCentered]="centered"
-            [matRippleDisabled]="disabled" [matRippleUnbounded]="unbounded" [matRippleRadius]="radius" [matRippleColor]="color"
-            (click)="selectCourse(1, true)">
+            [matRippleDisabled]="disabled" [matRippleUnbounded]="unbounded" [matRippleRadius]="radius"
+            [matRippleColor]="color" (click)="selectCourse(2, true)">
             Парикмахерское напрвление (Юниоры)
         </div>
     </mat-grid-tile>
     <mat-grid-tile>
         <div class="example-ripple-container mat-elevation-z4" matRipple [matRippleCentered]="centered"
-            [matRippleDisabled]="disabled" [matRippleUnbounded]="unbounded" [matRippleRadius]="radius" [matRippleColor]="color"
-            (click)="selectCourse(1, true)">
+            [matRippleDisabled]="disabled" [matRippleUnbounded]="unbounded" [matRippleRadius]="radius"
+            [matRippleColor]="color" (click)="selectCourse(3, true)">
             Моделирование и дизайн ногтей
         </div>
     </mat-grid-tile>
     <mat-grid-tile>
         <div class="example-ripple-container mat-elevation-z4" matRipple [matRippleCentered]="centered"
-            [matRippleDisabled]="disabled" [matRippleUnbounded]="unbounded" [matRippleRadius]="radius" [matRippleColor]="color"
-            (click)="selectCourse(1, true)">
+            [matRippleDisabled]="disabled" [matRippleUnbounded]="unbounded" [matRippleRadius]="radius"
+            [matRippleColor]="color" (click)="selectCourse(4, true)">
             ВИЗАЖИСТЫ - ЭСТЕТИКА
         </div>
     </mat-grid-tile>
@@ -31,32 +31,102 @@
 
 <div *ngIf="fillForm">
     <button (click)="selectCourse(0, false)" mdc-button dense raised>Вернуться к выбору направления</button>
-    <div mdcHeadline4>Регистрация на...</div>
+    <div mdcHeadline4>{{currentUser.cName}}</div>
+    <div mdcHeadline5>{{currentUser.cAddress}}</div>
     <br />
     <div>
-        <mdc-form-field fluid>
-            <mdc-text-field label="Имя" outlined required [(ngModel)]="currentUser.name"></mdc-text-field>
-            <mdc-helper-text persistent validation>*Required</mdc-helper-text>
-        </mdc-form-field>
 
+        <p>
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Название, адрес и телефон салона:" [(ngModel)]="currentUser.salon">
+                <!-- <textarea matInput placeholder="Название, адрес и телефон салона:"></textarea> -->
+            </mat-form-field>
+        </p>
 
-        <mdc-form-field fluid>
-            <mdc-text-field label="Фамелия" outlined required [(ngModel)]="currentUser.surname"></mdc-text-field>
-            <mdc-helper-text persistent validation>*Required</mdc-helper-text>
-        </mdc-form-field>
+        <table class="example-full-width" cellspacing="0">
+            <tr>
+                <td>
+                    <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Фамелия" [(ngModel)]="currentUser.surname">
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Имя" [(ngModel)]="currentUser.name">
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Отчество" [(ngModel)]="currentUser.mName">
+                    </mat-form-field>
+                </td>
+            </tr>
+        </table>
+
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Дата рождения:" [(ngModel)]="currentUser.surname">
+        </mat-form-field>
+
+        <p>
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Ф. И. О. модели:" [(ngModel)]="currentUser.mannequin">
+
+            </mat-form-field>
+        </p>
+
+        <table class="example-full-width" cellspacing="0">
+            <tr>
+                <td>
+                    <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Телефон" [(ngModel)]="currentUser.phone">
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field class="example-full-width">
+                        <input matInput placeholder="e-mail:" [(ngModel)]="currentUser.email">
+                    </mat-form-field>
+                </td>
+            </tr>
+        </table>
+
     </div>
 
-    <div mdcHeadline5>Хочу учавствовать в номинациях:</div>
+    <div mdcHeadline5>Я хотел(а) бы участвовать в следующем конкурсе:</div>
     <br />
 
     <table>
         <tbody>
             <tr *ngFor="let list of currentUser.nominations">
                 <td>
-                    <mdc-form-field>
-                        <mdc-checkbox [(ngModel)]="list.isSelected" (change)="onChanges()"></mdc-checkbox>
-                        <label>{{list.name}} стоимость участия: {{list.price}} руб.</label>
-                    </mdc-form-field>
+                    <mat-card class="example-card">
+                        <mat-card-header>
+                            <mat-card-title>{{list.name}}</mat-card-title>
+                            <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
+                        </mat-card-header>
+                        <mat-card-content>
+                            <table>
+                                <tbody>
+                                    <tr *ngFor="let inlist of list.parts">
+                                        <td>
+                                            {{inlist}}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </mat-card-content>
+                        <mat-card-actions>
+                            <mat-checkbox [(ngModel)]="list.isSelected" (change)="onChanges()">
+                                Хочу участвовать
+                            </mat-checkbox>
+                            <button mat-button>стоимость участия: {{list.price}} руб.</button>
+                            
+                        </mat-card-actions>
+
+                    </mat-card>
+
+
+
 
                 </td>
             </tr>
@@ -72,13 +142,15 @@
     <label>Checkbox</label>
 </mdc-form-field> -->
 
+
+
     <br />
 
     <button (click)="testClick()" mdc-button dense raised>Тестовая кнопка</button>
 
     <br />
 
-    <button (click)="getInfo()" mdc-button dense raised >Get Payment Info</button>
+    <button (click)="getInfo()" mdc-button dense raised>Get Payment Info</button>
 
     <br />
 

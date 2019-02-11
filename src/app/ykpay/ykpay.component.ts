@@ -1,11 +1,15 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { User } from './user';
+import { CourseT1 } from './model/courseT1';
+import { CourseT2 } from './model/courseT2';
+import { CourseT3 } from './model/courseT3';
+import { CourseT4 } from './model/courseT4';
 import { YandexCheckout } from 'yandex-checkout';
 import { uuid } from 'uuid';
 import { stringify } from 'querystring';
 
 import { DOCUMENT } from '@angular/common';
 import { promise } from 'protractor';
+import { Cource } from './model/cource';
 
 @Component({
     selector: 'app-ykpay',
@@ -22,7 +26,7 @@ export class YkpayComponent implements OnInit {
     check = new YandexCheckout('548831', 'test_BXC19NGsNOMn38f1e1t1JBFH4yuieszpj-P0UAb9BLQ');
 
 
-    currentUser: User = new User();
+    currentUser: Cource;
 
     sumTotal: number = 0;
 
@@ -31,18 +35,37 @@ export class YkpayComponent implements OnInit {
     IsWait: boolean = false;
 
     ngOnInit(): void {
-        
-     }
+
+    }
 
     constructor(@Inject(DOCUMENT) private document: any) {
-            //@Inject(DOCUMENT)
-     }
+        //@Inject(DOCUMENT)
+    }
 
     selectCourse(courseNumber: number, part: boolean): void {
         if (part) {
             this.selectPart = false;
             this.fillForm = true;
-            this.selectedCourse = courseNumber;
+            //this.selectedCourse = courseNumber;
+            switch (courseNumber) {
+                case 1: {
+                    this.currentUser = new CourseT1();
+                    break;
+                }
+                case 2: {
+                    this.currentUser = new CourseT2();
+                    break;
+                }
+                case 3: {
+                this.currentUser = new CourseT3();
+                    break;
+                }
+                case 4: {
+                this.currentUser = new CourseT4();
+                    break;
+                }
+            }
+
         } else {
             this.selectPart = true;
             this.fillForm = false;
@@ -71,31 +94,31 @@ export class YkpayComponent implements OnInit {
         this.sumTotal = this.computeTotal();
     }
 
-    
+
 
     getInfo() {
-        
+
         let paymentId: string = '23ecf75e-000f-5000-8000-149fe17e1ffa';
         let myString1;
         this.IsWait = true;
         this.check.getPayment(paymentId)
-            .then( (result) => {
+            .then((result) => {
                 this.goToUrl(result.id);
                 //return result.id;
                 //console.log(result);
                 //console.log(myString1);
-                
+
                 //let json = result.json();
                 //console.log(getString);
-                
+
                 //console.log({ payment: result });
             })
             .catch((err) => {
-                
+
                 console.error(err);
-                
-            });   
-            
+
+            });
+
     }
 
     testClick2(): void {
@@ -104,15 +127,15 @@ export class YkpayComponent implements OnInit {
         this.IsWait = false;
     }
 
-    getSomeString(): string{
+    getSomeString(): string {
         return 'someString';
     }
 
-    goToUrl( urlString : string): void {
+    goToUrl(urlString: string): void {
         this.document.location.href = 'https://stackoverflow.com/' + urlString + "/";
     }
 
-  
+
     createPayment(): void {
         const idempotenceKey = uuid.v4();
         let description = 'Заказ №2';
