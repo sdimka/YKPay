@@ -5,6 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { YkpayComponent } from './ykpay/ykpay.component';
+import { YKPService } from './ykpay/ykpay.service';
+
+import { HttpClientModule } from '@angular/common/http';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -21,6 +24,7 @@ import { FlexLayoutModule } from '@angular/flex-layout'
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    HttpClientModule,
 
     BrowserAnimationsModule,
 
@@ -29,7 +33,7 @@ import { FlexLayoutModule } from '@angular/flex-layout'
     FlexLayoutModule
 
   ],
-  providers: [],
+  providers: [YKPService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

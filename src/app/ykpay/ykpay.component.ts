@@ -6,6 +6,8 @@ import { CourseT4 } from './model/courseT4';
 import { YandexCheckout } from 'yandex-checkout';
 import { uuid } from 'uuid';
 
+import { YKPService } from './ykpay.service'
+
 
 import { DOCUMENT } from '@angular/common';
 import { Cource } from './model/cource';
@@ -37,7 +39,7 @@ export class YkpayComponent implements OnInit {
 
     }
 
-    constructor(@Inject(DOCUMENT) private document: any) {
+    constructor(@Inject(DOCUMENT) private document: any, private _ykpService: YKPService) {
         //@Inject(DOCUMENT)
     }
 
@@ -56,11 +58,11 @@ export class YkpayComponent implements OnInit {
                     break;
                 }
                 case 3: {
-                this.currentUser = new CourseT3();
+                    this.currentUser = new CourseT3();
                     break;
                 }
                 case 4: {
-                this.currentUser = new CourseT4();
+                    this.currentUser = new CourseT4();
                     break;
                 }
             }
@@ -78,6 +80,20 @@ export class YkpayComponent implements OnInit {
         console.log(this.currentUser.surname);
         console.log(this.currentUser.bDay);
         console.log(this.computeTotal());
+        this.sendUserInfo('Id-kkk-jmmm');
+    }
+
+
+    sendUserInfo(paymentId: string): void {
+
+        this.currentUser.paymentID = paymentId;
+        console.log(this.currentUser.bDay);
+        // IMPL new Date().toLocaleString()
+
+        this._ykpService.addPart(this.currentUser)
+            .subscribe((response) => { console.log(response) }, (error) => {
+                console.log(error);
+            });
     }
 
     computeTotal(): number {
@@ -99,11 +115,13 @@ export class YkpayComponent implements OnInit {
     getInfo() {
 
         let paymentId: string = '23ecf75e-000f-5000-8000-149fe17e1ffa';
-        let myString1;
         this.IsWait = true;
         this.check.getPayment(paymentId)
             .then((result) => {
+                
+                this.sendUserInfo(result.id);
                 this.goToUrl(result.id);
+
                 //return result.id;
                 //console.log(result);
                 //console.log(myString1);
@@ -114,7 +132,7 @@ export class YkpayComponent implements OnInit {
                 //console.log({ payment: result });
             })
             .catch((err) => {
-
+                this.sendUserInfo('Something wrong!!!');
                 console.error(err);
 
             });
@@ -163,11 +181,4 @@ export class YkpayComponent implements OnInit {
 
     }
 
-    objToStrMap(obj) {
-        let strMap = new Map();
-        for (let k of Object.keys(obj)) {
-            strMap.set(k, obj[k]);
-        }
-        return strMap;
-    }
 }
