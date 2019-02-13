@@ -3,7 +3,7 @@ import {
     BrowserAnimationsModule
 } from '@angular/platform-browser/animations';
 
-import {MatButtonModule, MatCheckboxModule, MatProgressBarModule} from '@angular/material';
+import {MatButtonModule, MatCheckboxModule, MatProgressBarModule, MatNativeDateModule} from '@angular/material';
 
 import {MatGridListModule} from '@angular/material/grid-list';
 
@@ -12,6 +12,10 @@ import {MatRippleModule} from '@angular/material/core';
 import {MatInputModule} from '@angular/material/input';
 
 import {MatCardModule} from '@angular/material/card';
+
+import {MatDatepickerModule} from '@angular/material/datepicker';
+
+import {MatChipsModule} from '@angular/material/chips';
 
 @NgModule({
   exports: [
@@ -23,7 +27,10 @@ import {MatCardModule} from '@angular/material/card';
     MatRippleModule,
     MatProgressBarModule,
     MatInputModule,
-    MatCardModule
+    MatCardModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatChipsModule
 
   ]
 })

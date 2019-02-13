@@ -7,7 +7,7 @@ export class Cource {
     name: string = '';
     surname: string = '';
     mName: string ='';
-    bDay: '';
+    bDay: Date = new Date(1990, 0, 1);;
     salon: string;
     mannequin: string = '';
     phone: number;

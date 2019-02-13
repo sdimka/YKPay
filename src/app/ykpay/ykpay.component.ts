@@ -5,10 +5,9 @@ import { CourseT3 } from './model/courseT3';
 import { CourseT4 } from './model/courseT4';
 import { YandexCheckout } from 'yandex-checkout';
 import { uuid } from 'uuid';
-import { stringify } from 'querystring';
+
 
 import { DOCUMENT } from '@angular/common';
-import { promise } from 'protractor';
 import { Cource } from './model/cource';
 
 @Component({
@@ -77,6 +76,7 @@ export class YkpayComponent implements OnInit {
     testClick(): void {
         console.log(this.currentUser.name);
         console.log(this.currentUser.surname);
+        console.log(this.currentUser.bDay);
         console.log(this.computeTotal());
     }
 

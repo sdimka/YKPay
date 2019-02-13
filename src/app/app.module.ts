@@ -6,10 +6,11 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { YkpayComponent } from './ykpay/ykpay.component';
 
-import { MaterialModule } from './material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AmaterialModule } from './amaterial.module';
+
+import { FlexLayoutModule } from '@angular/flex-layout'
 
 
 @NgModule({
@@ -21,11 +22,11 @@ import { AmaterialModule } from './amaterial.module';
     AppRoutingModule,
     FormsModule,
 
-    MaterialModule,
-
     BrowserAnimationsModule,
 
-    AmaterialModule
+    AmaterialModule,
+
+    FlexLayoutModule
 
   ],
   providers: [],

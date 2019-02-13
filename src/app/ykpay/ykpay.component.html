@@ -1,140 +1,216 @@
-<mat-grid-list cols="2" rowHeight="2:1" *ngIf="selectPart">
-    <mat-grid-tile>
+<!-- <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+    <mat-grid-list cols="2" *ngIf="selectPart">
+        <mat-grid-tile>
+            <div class="example-ripple-container mat-elevation-z4" matRipple [matRippleCentered]="centered"
+                [matRippleDisabled]="disabled" [matRippleUnbounded]="unbounded" [matRippleRadius]="radius"
+                [matRippleColor]="color" (click)="selectCourse(1, true)">
+                Парикмахерское направление
+            </div>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <div class="example-ripple-container mat-elevation-z4" matRipple [matRippleCentered]="centered"
+                [matRippleDisabled]="disabled" [matRippleUnbounded]="unbounded" [matRippleRadius]="radius"
+                [matRippleColor]="color" (click)="selectCourse(2, true)">
+                Парикмахерское напрвление (Юниоры)
+            </div>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <div class="example-ripple-container mat-elevation-z4" matRipple [matRippleCentered]="centered"
+                [matRippleDisabled]="disabled" [matRippleUnbounded]="unbounded" [matRippleRadius]="radius"
+                [matRippleColor]="color" (click)="selectCourse(3, true)">
+                Моделирование и дизайн ногтей
+            </div>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <div class="example-ripple-container mat-elevation-z4" matRipple [matRippleCentered]="centered"
+                [matRippleDisabled]="disabled" [matRippleUnbounded]="unbounded" [matRippleRadius]="radius"
+                [matRippleColor]="color" (click)="selectCourse(4, true)">
+                ВИЗАЖИСТЫ - ЭСТЕТИКА
+            </div>
+        </mat-grid-tile>
+    </mat-grid-list>
+
+</div> -->
+<div *ngIf="selectPart">
+    <h2>Выберете направление:</h2>
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="50px" fxLayoutWrap fxLayoutAlign="space-around center">
+
+
+        <!-- <mat-card fxFlex class="example-card-width" (click)="selectCourse(1, true)">
+            <mat-card-title>Парикмахерское направление</mat-card-title>
+        <div matRipple [matRippleTrigger]="trigger" class="my-ripple-container">
+            Парикмахерское направление
+        </div>
+        </mat-card> -->
         <div class="example-ripple-container mat-elevation-z4" matRipple [matRippleCentered]="centered"
             [matRippleDisabled]="disabled" [matRippleUnbounded]="unbounded" [matRippleRadius]="radius"
             [matRippleColor]="color" (click)="selectCourse(1, true)">
             Парикмахерское направление
         </div>
-    </mat-grid-tile>
-    <mat-grid-tile>
+
         <div class="example-ripple-container mat-elevation-z4" matRipple [matRippleCentered]="centered"
             [matRippleDisabled]="disabled" [matRippleUnbounded]="unbounded" [matRippleRadius]="radius"
             [matRippleColor]="color" (click)="selectCourse(2, true)">
-            Парикмахерское напрвление (Юниоры)
+            Парикмахерское направление Юниоры
         </div>
-    </mat-grid-tile>
-    <mat-grid-tile>
+
         <div class="example-ripple-container mat-elevation-z4" matRipple [matRippleCentered]="centered"
             [matRippleDisabled]="disabled" [matRippleUnbounded]="unbounded" [matRippleRadius]="radius"
             [matRippleColor]="color" (click)="selectCourse(3, true)">
             Моделирование и дизайн ногтей
         </div>
-    </mat-grid-tile>
-    <mat-grid-tile>
+
         <div class="example-ripple-container mat-elevation-z4" matRipple [matRippleCentered]="centered"
             [matRippleDisabled]="disabled" [matRippleUnbounded]="unbounded" [matRippleRadius]="radius"
             [matRippleColor]="color" (click)="selectCourse(4, true)">
             ВИЗАЖИСТЫ - ЭСТЕТИКА
         </div>
-    </mat-grid-tile>
-</mat-grid-list>
+
+    </div>
+</div>
+
 
 <div *ngIf="fillForm">
-    <button (click)="selectCourse(0, false)" mdc-button dense raised>Вернуться к выбору направления</button>
-    <div mdcHeadline4>{{currentUser.cName}}</div>
-    <div mdcHeadline5>{{currentUser.cAddress}}</div>
-    <br />
-    <div>
+    <button (click)="selectCourse(0, false)" mat-flat-button color="primary">Вернуться к выбору направления</button>
 
-        <p>
-            <mat-form-field class="example-full-width">
-                <input matInput placeholder="Название, адрес и телефон салона:" [(ngModel)]="currentUser.salon">
-                <!-- <textarea matInput placeholder="Название, адрес и телефон салона:"></textarea> -->
+    <div fxLayout="column" fxLayoutGap="50px" fxLayoutWrap fxLayoutAlign="space-around center">
+
+        <div>
+            <!-- Заголовок -->
+
+            <h2>{{currentUser.cName}}</h2>
+            <h3>{{currentUser.cAddress}}</h3>
+
+        </div>
+
+        <div>
+            <!-- ФИО -->
+            <p>
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Название, адрес и телефон салона:" [(ngModel)]="currentUser.salon">
+                    <!-- <textarea matInput placeholder="Название, адрес и телефон салона:"></textarea> -->
+                </mat-form-field>
+            </p>
+
+            <table class="example-full-width" cellspacing="0">
+                <tr>
+                    <td>
+                        <mat-form-field class="example-full-width">
+                            <input matInput placeholder="Фамелия" [(ngModel)]="currentUser.surname">
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <mat-form-field class="example-full-width">
+                            <input matInput placeholder="Имя" [(ngModel)]="currentUser.name">
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <mat-form-field class="example-full-width">
+                            <input matInput placeholder="Отчество" [(ngModel)]="currentUser.mName">
+                        </mat-form-field>
+                    </td>
+                </tr>
+            </table>
+
+            <mat-form-field>
+                <input matInput [matDatepicker]="picker" placeholder="Дата рождения:" [(ngModel)]="currentUser.bDay">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
             </mat-form-field>
-        </p>
 
-        <table class="example-full-width" cellspacing="0">
-            <tr>
-                <td>
-                    <mat-form-field class="example-full-width">
-                        <input matInput placeholder="Фамелия" [(ngModel)]="currentUser.surname">
-                    </mat-form-field>
-                </td>
-                <td>
-                    <mat-form-field class="example-full-width">
-                        <input matInput placeholder="Имя" [(ngModel)]="currentUser.name">
-                    </mat-form-field>
-                </td>
-                <td>
-                    <mat-form-field class="example-full-width">
-                        <input matInput placeholder="Отчество" [(ngModel)]="currentUser.mName">
-                    </mat-form-field>
-                </td>
-            </tr>
-        </table>
+            <p>
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Ф. И. О. модели:" [(ngModel)]="currentUser.mannequin">
 
-        <mat-form-field class="example-full-width">
-            <input matInput placeholder="Дата рождения:" [(ngModel)]="currentUser.surname">
-        </mat-form-field>
+                </mat-form-field>
+            </p>
 
-        <p>
-            <mat-form-field class="example-full-width">
-                <input matInput placeholder="Ф. И. О. модели:" [(ngModel)]="currentUser.mannequin">
+            <table class="example-full-width" cellspacing="0">
+                <tr>
+                    <td>
+                        <mat-form-field class="example-full-width">
+                            <input matInput placeholder="Телефон" [(ngModel)]="currentUser.phone">
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <mat-form-field class="example-full-width">
+                            <input matInput placeholder="e-mail:" [(ngModel)]="currentUser.email">
+                        </mat-form-field>
+                    </td>
+                </tr>
+            </table>
+        </div>
 
-            </mat-form-field>
-        </p>
+        <div>
+            <!-- Таблица -->
+            <h3>Я хотел(а) бы участвовать в следующем конкурсе:</h3>
+            <br />
 
-        <table class="example-full-width" cellspacing="0">
-            <tr>
-                <td>
-                    <mat-form-field class="example-full-width">
-                        <input matInput placeholder="Телефон" [(ngModel)]="currentUser.phone">
-                    </mat-form-field>
-                </td>
-                <td>
-                    <mat-form-field class="example-full-width">
-                        <input matInput placeholder="e-mail:" [(ngModel)]="currentUser.email">
-                    </mat-form-field>
-                </td>
-            </tr>
-        </table>
+            <table>
+                <tbody>
+                    <tr *ngFor="let list of currentUser.nominations">
+                        <td>
+                            <mat-card class="example-card">
+                                <mat-card-header>
+                                    <mat-card-title>{{list.name}}</mat-card-title>
+                                    <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
+                                </mat-card-header>
+                                <mat-card-content>
+                                    <table>
+                                        <tbody>
+                                            <tr *ngFor="let inlist of list.parts">
+                                                <td>
+                                                    {{inlist}}
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </mat-card-content>
+                                <mat-card-actions>
+                                    <mat-checkbox [(ngModel)]="list.isSelected" (change)="onChanges()">
+                                        Хочу участвовать
+                                    </mat-checkbox>
+                                    <button mat-button>стоимость участия: {{list.price}} руб.</button>
+
+                                </mat-card-actions>
+
+                            </mat-card>
+
+
+
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+        <div mdcHeadline5>
+           <h3> Итого к оплате по выбранным номинациям: {{sumTotal}} </h3>
+        </div>
+
+        <div>
+            <!-- Кнопки -->
+            <button (click)="testClick()" mat-flat-button color="primary">Тестовая кнопка</button>
+
+            <br />
+
+            <button (click)="getInfo()" mat-flat-button color="primary">Get Payment Info</button>
+
+            <br />
+
+            <button (click)="createPayment()" mat-flat-button color="primary">Create Payment</button>
+        </div>
 
     </div>
 
-    <div mdcHeadline5>Я хотел(а) бы участвовать в следующем конкурсе:</div>
-    <br />
-
-    <table>
-        <tbody>
-            <tr *ngFor="let list of currentUser.nominations">
-                <td>
-                    <mat-card class="example-card">
-                        <mat-card-header>
-                            <mat-card-title>{{list.name}}</mat-card-title>
-                            <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
-                        </mat-card-header>
-                        <mat-card-content>
-                            <table>
-                                <tbody>
-                                    <tr *ngFor="let inlist of list.parts">
-                                        <td>
-                                            {{inlist}}
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-
-                        </mat-card-content>
-                        <mat-card-actions>
-                            <mat-checkbox [(ngModel)]="list.isSelected" (change)="onChanges()">
-                                Хочу участвовать
-                            </mat-checkbox>
-                            <button mat-button>стоимость участия: {{list.price}} руб.</button>
-                            
-                        </mat-card-actions>
-
-                    </mat-card>
 
 
 
 
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <br />
-
-    <div mdcHeadline5>Итого к оплате по выбранным номинациям: {{sumTotal}} </div>
+    
 
 
     <!-- <mdc-form-field>
@@ -146,15 +222,7 @@
 
     <br />
 
-    <button (click)="testClick()" mdc-button dense raised>Тестовая кнопка</button>
 
-    <br />
-
-    <button (click)="getInfo()" mdc-button dense raised>Get Payment Info</button>
-
-    <br />
-
-    <button (click)="createPayment()" mdc-button dense raised>Create Payment</button>
 </div>
 
 <mat-progress-bar mode="indeterminate" *ngIf="IsWait"></mat-progress-bar>
