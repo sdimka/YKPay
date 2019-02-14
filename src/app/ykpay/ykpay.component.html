@@ -54,8 +54,12 @@
             <!-- ФИО -->
             <p>
                 <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Название, адрес и телефон салона:" [(ngModel)]="currentUser.salon">
-                    <!-- <textarea matInput placeholder="Название, адрес и телефон салона:"></textarea> -->
+                    <input matInput placeholder="Название, адрес и телефон салона:"
+                        [(formControl)]="complexForm.controls['salon']">
+                    <mat-error
+                        *ngIf="!complexForm.controls['salon'].valid && complexForm.controls['salon'].touched">
+                        Название салона обязательно
+                    </mat-error>
                 </mat-form-field>
             </p>
 
@@ -63,32 +67,48 @@
                 <tr>
                     <td>
                         <mat-form-field class="example-full-width">
-                            <input matInput placeholder="Фамелия" [(ngModel)]="currentUser.surname">
+                            <input matInput placeholder="Фамелия" [formControl]="complexForm.controls['surname']">
+                            <mat-error
+                                *ngIf="!complexForm.controls['surname'].valid && complexForm.controls['surname'].touched">
+                                Это обязательное поле
+                            </mat-error>
                         </mat-form-field>
                     </td>
                     <td>
                         <mat-form-field class="example-full-width">
-                            <input matInput placeholder="Имя" [(ngModel)]="currentUser.name">
+                            <input matInput placeholder="Имя" [formControl]="complexForm.controls['name']">
+                            <mat-error
+                                *ngIf="!complexForm.controls['mName'].valid && complexForm.controls['mName'].touched">
+                                Это обязательное поле
+                            </mat-error>
                         </mat-form-field>
                     </td>
                     <td>
                         <mat-form-field class="example-full-width">
-                            <input matInput placeholder="Отчество" [(ngModel)]="currentUser.mName">
+                            <input matInput placeholder="Отчество" [formControl]="complexForm.controls['mName']">
+                            <mat-error
+                                *ngIf="!complexForm.controls['mName'].valid && complexForm.controls['mName'].touched">
+                                Необходимо указать ФИО вашей модели
+                            </mat-error>
                         </mat-form-field>
                     </td>
                 </tr>
             </table>
 
             <mat-form-field>
-                <input matInput [matDatepicker]="picker" placeholder="Дата рождения:" [(ngModel)]="currentUser.bDay">
+                <input matInput [matDatepicker]="picker" placeholder="Дата рождения:"
+                    [formControl]="complexForm.controls['bDay']">
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
             </mat-form-field>
 
             <p>
                 <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Ф. И. О. модели:" [(ngModel)]="currentUser.mannequin">
-
+                    <input matInput placeholder="Ф. И. О. модели:" [formControl]="complexForm.controls['mannequin']">
+                    <mat-error
+                        *ngIf="!complexForm.controls['mannequin'].valid && complexForm.controls['mannequin'].touched">
+                        Необходимо указать ФИО вашей модели
+                    </mat-error>
                 </mat-form-field>
             </p>
 
@@ -96,16 +116,35 @@
                 <tr>
                     <td>
                         <mat-form-field class="example-full-width">
-                            <input matInput placeholder="Телефон" [(ngModel)]="currentUser.phone">
+                            <input matInput placeholder="Телефон" [formControl]="complexForm.controls['phone']">
+                            <mat-error
+                                *ngIf="!complexForm.controls['phone'].valid && complexForm.controls['phone'].touched">
+                                Необходимо указать телефон
+                            </mat-error>
                         </mat-form-field>
                     </td>
                     <td>
                         <mat-form-field class="example-full-width">
-                            <input matInput placeholder="e-mail:" [(ngModel)]="currentUser.email">
+                            <input matInput placeholder="Email" [formControl]="complexForm.controls['email']"
+                                [errorStateMatcher]="matcher" required>
+                            <mat-hint>обязательноe поле</mat-hint>
+                            <mat-error *ngIf="complexForm.controls['email'].hasError('email') &&
+                                 !complexForm.controls['email'].hasError('required')">
+                                Укажите корректный e-mail
+                            </mat-error>
+                            <mat-error *ngIf="complexForm.hasError('required')">
+                                Email <strong>обязательноe</strong> поле
+                            </mat-error>
                         </mat-form-field>
                     </td>
                 </tr>
             </table>
+
+            <p>
+            <mat-checkbox [formControl]="complexForm.controls['confirmPersonal']">
+                    Согласен на обработку персональных данных
+                </mat-checkbox>
+            </p>
         </div>
 
         <div>
@@ -150,11 +189,9 @@
 
         </div>
 
-        <div mdcHeadline5>
+        <div>
             <h3> Итого к оплате по выбранным номинациям: {{sumTotal}} </h3>
-            <mat-checkbox [(ngModel)]="currentUser.confirmPersonal">
-                Согласен на обработку персональных данных
-            </mat-checkbox>
+
         </div>
 
         <div>
@@ -163,7 +200,9 @@
 
             <br />
 
-            <button (click)="getInfo()" mat-flat-button color="primary">Get Payment Info</button>
+            <button (click)="getInfo()" mat-flat-button color="primary" [disabled]="!complexForm.valid">Get Payment
+                Info</button>
+
 
             <br />
 
@@ -172,7 +211,7 @@
 
         <div>
             <!-- Прогресс - бар -->
-            
+
         </div>
 
         <mat-progress-bar mode="indeterminate" *ngIf="IsWait"></mat-progress-bar>
@@ -180,4 +219,3 @@
 
 
 </div>
-

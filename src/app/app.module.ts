@@ -3,10 +3,10 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { YkpayComponent } from './ykpay/ykpay.component';
 import { YKPService } from './ykpay/ykpay.service';
-
+import {ErrorStateMatcher} from '@angular/material/core';
 import { HttpClientModule } from '@angular/common/http';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -24,8 +24,8 @@ import { FlexLayoutModule } from '@angular/flex-layout'
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
-
     BrowserAnimationsModule,
 
     AmaterialModule,
@@ -33,7 +33,7 @@ import { FlexLayoutModule } from '@angular/flex-layout'
     FlexLayoutModule
 
   ],
-  providers: [YKPService],
+  providers: [YKPService, ErrorStateMatcher],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
