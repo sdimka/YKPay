@@ -7,7 +7,7 @@ import { CourseT2 } from './model/courseT2';
 import { CourseT3 } from './model/courseT3';
 import { CourseT4 } from './model/courseT4';
 import { YandexCheckout } from 'yandex-checkout';
-import { uuid } from 'uuid';
+import uuid from 'uuid';
 
 import { YKPService } from './ykpay.service'
 
@@ -191,6 +191,7 @@ export class YkpayComponent implements OnInit {
         this.IsWait = true;
         const idempotenceKey = uuid.v4();
         let description = 'Оплата участия в Чемпионате';
+        
         this.check.createPayment({
             'amount': {
                 'value': this.sumTotal,
