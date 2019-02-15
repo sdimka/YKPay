@@ -98,6 +98,7 @@ export class YkpayComponent implements OnInit {
             this.selectPart = true;
             this.fillForm = false;
             this.selectedCourse = 0;
+            this.sumTotal = 0;
         }
 
     }
@@ -188,11 +189,12 @@ export class YkpayComponent implements OnInit {
 
 
     createPayment(): void {
+        this.IsWait = true;
         const idempotenceKey = uuid.v4();
-        let description = 'Заказ №2';
+        let description = 'Оплата участия в Чемпионате';
         this.check.createPayment({
             'amount': {
-                'value': '2.00',
+                'value': this.sumTotal,
                 'currency': 'RUB'
             },
             'payment_method_data': {
@@ -205,10 +207,14 @@ export class YkpayComponent implements OnInit {
             'capture': true,
             'description': description
         }, idempotenceKey)
-            .then(function (result) {
+            .then((result) => {
+
+                this.sendUserInfo(result.id);
+                this.goToUrl(result.id);
+
                 console.log({ payment: result });
             })
-            .catch(function (err) {
+            .catch((err) => {
                 console.error(err);
             });
 

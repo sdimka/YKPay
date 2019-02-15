@@ -3,7 +3,7 @@ import { Cource } from './cource';
 
 export class CourseT3 extends Cource{
     id: number;
-    cName = '';
+    cName = 'Регистрационная форма для участия в XXI Чемпионате Санкт-Петербургапо моделированию и дизайну ногтей';
     name: string = '';
     surname: string = '';
     nominations: Nomination[] = [

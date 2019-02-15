@@ -3,25 +3,32 @@ import { Cource } from './cource';
 
 export class CourseT2 extends Cource{
     id: number;
-    cName = '';
+    cName = 'Регистрационная форма для участия в XXI Чемпионате Санкт-Петербурга по парикмахерскому искусству, декоративной косметике УЧАЩИЕСЯ И ЮНИОРЫ';
     name: string = '';
     surname: string = '';
     nominations: Nomination[] = [
-        { id: 1, name: 'Тип 2', price: 15, isSelected: false,
-        parts: ['k', 'k']},
-        { id: 2, name: 'Лучшие уши', price: 25, isSelected: false,
-        parts: ['k', 'k']},
-        { id: 3, name: 'Лучшие носы', price: 35, isSelected: false,
-        parts: ['k', 'k']},
-        { id: 4, name: 'Лучшие руки-ножницы', price: 10, isSelected: false,
-        parts: ['k', 'k']},
-        { id: 4, name: 'Herb bp njuj vt', price: 50, isSelected: false,
-        parts: ['k', 'k']},
-        { id: 4, name: 'Лучшие руки-ножницы', price: 105, isSelected: false,
-        parts: ['k', 'k']},
-        { id: 4, name: 'Руки из того места', price: 75, isSelected: false,
-        parts: ['k', 'k']},
-        { id: 4, name: 'Лучшие руки-ножницы', price: 60, isSelected: false,
-        parts: ['k', 'k']},
+        { id: 1, name: 'Женские мастера – Техника (комбинированный вид)', price: 2000, isSelected: false,
+        parts: 
+        ['Креативная прическа (на манекен-головке)',
+         'Вечерняя прическа (на манекен-головке)']},
+        { id: 2, name: 'Женские мастера – Мода (комбинированный вид)', price: 2000, isSelected: false,
+        parts: 
+        ['Дневная прическа (на манекен-головке)',
+         'Вечерняя прическа (на манекен-головке)']},
+        { id: 3, name: 'Женские мастера – Престиж-Кубок', price: 2000, isSelected: false,
+        parts: 
+        ['Престиж-прическа для Гала-вечера  (на манекен-головке)',
+         'Престиж-прическа новобрачной (на манекен-головке)']},
+        { id: 4, name: 'Мужская мастера – Техника (комбинированный вид)', price: 2000, isSelected: false,
+        parts: 
+        ['Креативная прическа (на манекен-головке)', 
+        'Классическая стрижка (на манекен-головке)']},
+        { id: 4, name: 'Мужская мастера – Салонная мода  (комбинированный вид)', price: 2000, isSelected: false,
+        parts: 
+        ['Салонная прическа (на манекен-головке)', 
+        'Салонная стрижка (на манекен-головке)']},
+        { id: 4, name: 'Женские мастера – (индивидуальный вид)', price: 1500, isSelected: false,
+        parts: 
+        ['Прическа новобрачной (на манекен-головке)', '']},
     ];
 }
