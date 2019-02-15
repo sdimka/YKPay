@@ -38,15 +38,15 @@
 
 
 <div *ngIf="fillForm">
-    <button (click)="selectCourse(0, false)" mat-flat-button color="primary">Вернуться к выбору направления</button>
+    
 
     <div fxLayout="column" fxLayoutGap="50px" fxLayoutWrap fxLayoutAlign="space-around center">
-
+        <button (click)="selectCourse(0, false)" mat-flat-button color="primary">Вернуться к выбору направления</button>
         <div>
             <!-- Заголовок -->
 
-            <h2>{{currentUser.cName}}</h2>
-            <h3>{{currentUser.cAddress}}</h3>
+            <h2 align="center">{{currentUser.cName}}</h2>
+            <h3 align="center">{{currentUser.cAddress}}</h3>
 
         </div>
 
