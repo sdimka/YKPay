@@ -183,7 +183,8 @@ export class YkpayComponent implements OnInit {
     }
 
     goToUrl(urlString: string): void {
-        this.document.location.href = 'https://stackoverflow.com/' + urlString + "/";
+        //this.document.location.href = 'https://stackoverflow.com/' + urlString + "/";
+        this.document.location.href = urlString;
     }
 
 
@@ -210,7 +211,7 @@ export class YkpayComponent implements OnInit {
             .then((result) => {
 
                 this.sendUserInfo(result.id);
-                this.goToUrl(result.id);
+                this.goToUrl(result.confirmation.confirmation_url);
 
                 console.log({ payment: result });
             })
