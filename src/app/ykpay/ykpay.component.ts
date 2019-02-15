@@ -119,7 +119,7 @@ export class YkpayComponent implements OnInit {
         result.paymentID = paymentId;
         
         // IMPL new Date().toLocaleString()
-
+        console.log(result);
         this._ykpService.addPart(result)
             .subscribe((response) => { console.log(response) }, (error) => {
                 console.log(error);
@@ -139,7 +139,6 @@ export class YkpayComponent implements OnInit {
     onChanges(): void {
         this.sumTotal = this.computeTotal();
         if (this.sumTotal > 0) {
-            //this.complexForm.controls['nominations'].updateValue
             (this.complexForm.controls['nominations']).setErrors(null)
         }
     }
