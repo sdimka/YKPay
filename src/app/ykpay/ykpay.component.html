@@ -1,5 +1,6 @@
 <div *ngIf="selectPart">
-    <h2 align="center">Регистрация участника в XXI Чемпионате Санкт-Петербурга по парикмахерскому искусству и декоративной косметике</h2>
+    <h2 align="center">Регистрация участника в XXI Чемпионате Санкт-Петербурга по парикмахерскому искусству и
+        декоративной косметике</h2>
     <h2 align="center">Выберите направление:</h2>
     <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="50px" fxLayoutWrap fxLayoutAlign="space-around center">
 
@@ -39,7 +40,7 @@
 
 
 <div *ngIf="fillForm">
-    
+
 
     <div fxLayout="column" fxLayoutGap="50px" fxLayoutWrap fxLayoutAlign="space-around center">
         <button (click)="selectCourse(0, false)" mat-flat-button color="primary">Вернуться к выбору направления</button>
@@ -57,8 +58,7 @@
                 <mat-form-field class="example-full-width">
                     <input matInput placeholder="Название, адрес и телефон салона:"
                         [(formControl)]="complexForm.controls['salon']">
-                    <mat-error
-                        *ngIf="!complexForm.controls['salon'].valid && complexForm.controls['salon'].touched">
+                    <mat-error *ngIf="!complexForm.controls['salon'].valid && complexForm.controls['salon'].touched">
                         Название салона обязательно
                     </mat-error>
                 </mat-form-field>
@@ -89,7 +89,7 @@
                             <input matInput placeholder="Отчество" [formControl]="complexForm.controls['mName']">
                             <mat-error
                                 *ngIf="!complexForm.controls['mName'].valid && complexForm.controls['mName'].touched">
-                                Необходимо указать ФИО вашей модели
+                                Это обязательное поле
                             </mat-error>
                         </mat-form-field>
                     </td>
@@ -142,7 +142,7 @@
             </table>
 
             <p>
-            <mat-checkbox [formControl]="complexForm.controls['confirmPersonal']">
+                <mat-checkbox [formControl]="complexForm.controls['confirmPersonal']">
                     Согласен на обработку персональных данных
                 </mat-checkbox>
             </p>
@@ -152,41 +152,25 @@
             <!-- Таблица -->
             <h3>Я хотел(а) бы участвовать в следующем конкурсе:</h3>
             <br />
+            <div *ngFor="let list of currentUser.nominations" div fxLayout="column" fxLayoutAlign="start start" >
 
-            <table>
-                <tbody>
-                    <tr *ngFor="let list of currentUser.nominations">
-                        <td>
-                            <mat-card class="example-card">
-                                <mat-card-header>
-                                    <mat-card-title>{{list.name}}</mat-card-title>
-                                    <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
-                                </mat-card-header>
-                                <mat-card-content>
-                                    <table>
-                                        <tbody>
-                                            <tr *ngFor="let inlist of list.parts">
-                                                <td>
-                                                    {{inlist}}
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                <h3>{{list.name}}</h3>
 
-                                </mat-card-content>
-                                <mat-card-actions>
-                                    <mat-checkbox [(ngModel)]="list.isSelected" (change)="onChanges()">
-                                        Хочу участвовать
-                                    </mat-checkbox>
-                                    <button mat-button>стоимость участия: {{list.price}} руб.</button>
+                <div div fxLayout="row" fxLayoutAlign="start center" fxFill>
+                    <div fxFlex="60">
+                        <div *ngFor="let inlist of list.parts" div fxLayout="column" fxLayoutAlign="start start">
+                            {{inlist}}
+                        </div>
+                    </div>
+                    <div fxFlex="20">стоимость участия: {{list.price}} руб.</div>
+                    <div fxFlex="20">
+                        <mat-checkbox [(ngModel)]="list.isSelected" (change)="onChanges()">
+                            
+                        </mat-checkbox>
+                    </div>
+                </div>
+            </div>
 
-                                </mat-card-actions>
-
-                            </mat-card>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
 
         </div>
 
