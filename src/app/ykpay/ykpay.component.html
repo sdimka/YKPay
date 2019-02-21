@@ -185,10 +185,10 @@
 
             <br />
 
-            <button (click)="createPayment()" mat-flat-button color="primary" [disabled]="!complexForm.valid">
+            <button (click)="sendUserInfo()" mat-flat-button color="primary" [disabled]="!complexForm.valid">
                 Зарегестрироваться и оплатить
             </button>
-
+            <mat-progress-bar mode="indeterminate" *ngIf="IsWait"></mat-progress-bar>
 
             <br />
 
@@ -200,7 +200,7 @@
 
         </div>
 
-        <mat-progress-bar mode="indeterminate" *ngIf="IsWait"></mat-progress-bar>
+        
     </div>
 
 

@@ -6,7 +6,8 @@ import { CourseT1 } from './model/courseT1';
 import { CourseT2 } from './model/courseT2';
 import { CourseT3 } from './model/courseT3';
 import { CourseT4 } from './model/courseT4';
-import { YandexCheckout } from 'yandex-checkout';
+import { Response } from './model/response';
+//import { YandexCheckout } from 'yandex-checkout';
 import uuid from 'uuid';
 
 import { YKPService } from './ykpay.service'
@@ -131,9 +132,9 @@ export class YkpayComponent implements OnInit {
 
         this._ykpService.addPart(result)
             .subscribe((response) => { 
-                console.log(response)
+                //console.log(response.url);
                 
-                this.goToUrl(response); 
+                this.goToUrl(response.url); 
             }, (error) => {
                 console.log(error);
             });

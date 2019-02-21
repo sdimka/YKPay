@@ -2,6 +2,7 @@ import {HttpClient, HttpResponse, HttpHeaders, HttpErrorResponse} from '@angular
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { Cource } from './model/cource';
+import { Response } from './model/response';
 import { catchError } from 'rxjs/operators';
 
 
@@ -34,11 +35,11 @@ export class YKPService{
           'Something bad happened; please try again later.');
     }
 
-    addPart(part : Cource): Observable<string> {
+    addPart(part : Cource): Observable<Response> {
         if(part.id){
-            return this._httpService.put<string>(`${this.getUrl}/${part.id}`, part);
+            return this._httpService.put<Response>(`${this.getUrl}/${part.id}`, part);
         } else {
-            return this._httpService.post<string>(this.getUrl, part);
+            return this._httpService.post<Response>(this.getUrl, part);
         }
     }
 
