@@ -33,8 +33,10 @@ export class CourseT1 extends Cource{
         'Престиж-прическа новобрачной (на модели)']},
 
         { id: 6, name: 'Женские мастера – (индивидуальные виды)', price: 3000, isSelected: false,
-        parts: ['Прическа новобрачной (на модели)', 
-        'Фантазийная прическа (на модели)']},
+        parts: ['Прическа новобрачной (на модели)']},
+
+        { id: 7, name: '', price: 3000, isSelected: false,
+        parts: [ 'Фантазийная прическа (на модели)']},
 
         { id: 7, name: 'Мужские мастера - Техника (комбинированный вид)', price: 4000, isSelected: false,
         parts: 
@@ -56,5 +58,11 @@ export class CourseT1 extends Cource{
         { id: 11, name: 'Мужские мастера – (индивидуальный вид)', price: 4000, isSelected: false,
         parts: ['Мастер-стилист (на маникен-головке)', 
         'Тату-дизайн (на модели)']},
+
+        { id: 11, name: '', price: 4000, isSelected: false,
+        parts: ['Тату-дизайн (на модели)']},
+
+        { id: 11, name: '', price: 4000, isSelected: false,
+        parts: ['Укладка с применением накладок (на манекен-головке)']},
     ];
 }
