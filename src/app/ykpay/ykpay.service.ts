@@ -34,11 +34,11 @@ export class YKPService{
           'Something bad happened; please try again later.');
     }
 
-    addPart(part : Cource): Observable<Cource> {
+    addPart(part : Cource): Observable<string> {
         if(part.id){
-            return this._httpService.put<Cource>(`${this.getUrl}/${part.id}`, part);
+            return this._httpService.put<string>(`${this.getUrl}/${part.id}`, part);
         } else {
-            return this._httpService.post<Cource>(this.getUrl, part);
+            return this._httpService.post<string>(this.getUrl, part);
         }
     }
 

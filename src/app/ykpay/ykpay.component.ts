@@ -115,18 +115,26 @@ export class YkpayComponent implements OnInit {
 
     sendUserInfo(paymentId: string): void {
 
+        this.IsWait = true;
+
         // Copy Data from Form to Model
         const result: Cource = Object.assign({}, this.complexForm.value);
 
         // May be delete this?
         result.paymentID = paymentId;
+        result.description = 'Оплата участия в Чемпионате';
+        result.totalSum = this.sumTotal;
 
         
-        
         // IMPL new Date().toLocaleString()
-        console.log(result);
+        //console.log(result);
+
         this._ykpService.addPart(result)
-            .subscribe((response) => { console.log(response) }, (error) => {
+            .subscribe((response) => { 
+                console.log(response)
+                
+                this.goToUrl(response); 
+            }, (error) => {
                 console.log(error);
             });
     }
