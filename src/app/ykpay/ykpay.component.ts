@@ -34,7 +34,7 @@ export class YkpayComponent implements OnInit {
     fillForm: boolean = false;
     selectedCourse = 0;
 
-    check = new YandexCheckout('548831', 'test_BXC19NGsNOMn38f1e1t1JBFH4yuieszpj-P0UAb9BLQ');
+    //check = new YandexCheckout('548831', 'test_BXC19NGsNOMn38f1e1t1JBFH4yuieszpj-P0UAb9BLQ');
 
     currentUser: Cource;
 
@@ -115,8 +115,13 @@ export class YkpayComponent implements OnInit {
 
     sendUserInfo(paymentId: string): void {
 
+        // Copy Data from Form to Model
         const result: Cource = Object.assign({}, this.complexForm.value);
+
+        // May be delete this?
         result.paymentID = paymentId;
+
+        
         
         // IMPL new Date().toLocaleString()
         console.log(result);
@@ -149,26 +154,26 @@ export class YkpayComponent implements OnInit {
 
         let paymentId: string = '23ecf75e-000f-5000-8000-149fe17e1ffa';
         this.IsWait = true;
-        this.check.getPayment(paymentId)
-            .then((result) => {
+        // this.check.getPayment(paymentId)
+        //     .then((result) => {
 
-                this.sendUserInfo(result.id);
-                this.goToUrl(result.id);
+        //         this.sendUserInfo(result.id);
+        //         this.goToUrl(result.id);
 
-                //return result.id;
-                //console.log(result);
-                //console.log(myString1);
+        //         //return result.id;
+        //         //console.log(result);
+        //         //console.log(myString1);
 
-                //let json = result.json();
-                //console.log(getString);
+        //         //let json = result.json();
+        //         //console.log(getString);
 
-                //console.log({ payment: result });
-            })
-            .catch((err) => {
-                this.sendUserInfo('Something wrong!!!');
-                console.error(err);
+        //         //console.log({ payment: result });
+        //     })
+        //     .catch((err) => {
+        //         this.sendUserInfo('Something wrong!!!');
+        //         console.error(err);
 
-            });
+        //     });
 
     }
 
@@ -192,32 +197,34 @@ export class YkpayComponent implements OnInit {
         this.IsWait = true;
         const idempotenceKey = uuid.v4();
         let description = 'Оплата участия в Чемпионате';
+        this.currentUser.description = 'Оплата участия в Чемпионате';
         
-        this.check.createPayment({
-            'amount': {
-                'value': this.sumTotal,
-                'currency': 'RUB'
-            },
-            'payment_method_data': {
-                'type': 'bank_card'
-            },
-            'confirmation': {
-                'type': 'redirect',
-                'return_url': 'https://www.merchant-website.com/return_url'
-            },
-            'capture': true,
-            'description': description
-        }, idempotenceKey)
-            .then((result) => {
 
-                this.sendUserInfo(result.id);
-                this.goToUrl(result.confirmation.confirmation_url);
+        // this.check.createPayment({
+        //     'amount': {
+        //         'value': this.sumTotal,
+        //         'currency': 'RUB'
+        //     },
+        //     'payment_method_data': {
+        //         'type': 'bank_card'
+        //     },
+        //     'confirmation': {
+        //         'type': 'redirect',
+        //         'return_url': 'https://www.merchant-website.com/return_url'
+        //     },
+        //     'capture': true,
+        //     'description': description
+        // }, idempotenceKey)
+        //     .then((result) => {
 
-                console.log({ payment: result });
-            })
-            .catch((err) => {
-                console.error(err);
-            });
+        //         this.sendUserInfo(result.id);
+        //         this.goToUrl(result.confirmation.confirmation_url);
+
+        //         console.log({ payment: result });
+        //     })
+        //     .catch((err) => {
+        //         console.error(err);
+        //     });
 
     }
 

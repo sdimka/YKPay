@@ -16,4 +16,6 @@ export class Cource {
     confirmPersonal: boolean;
     uuid: string;
     paymentID: string;
+    description: string;
+    totalSum: number;
 }
