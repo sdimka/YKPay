@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'ykPay';
+  title = 'Регистрационная форма | Союз предприятий и специалистов индустрии красоты Северо-Запада';
 }
