@@ -1,9 +1,13 @@
-<div *ngIf="selectPart">
-    <h2 align="center">Регистрация участника в XXI Чемпионате Санкт-Петербурга по парикмахерскому искусству и
-        декоративной косметике</h2>
-    <h2 align="center">Выберите направление:</h2>
-    <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="50px" fxLayoutWrap fxLayoutAlign="space-around center">
+<div *ngIf="selectPart" fxFlex >
 
+    <mat-card fxLayout="column" fxLayout.xs="column" fxLayoutGap="50px" fxLayoutWrap
+        fxLayoutAlign="space-around center" class="card_main">
+
+        <div fxLayoutWrap>
+            <h2 align="center">Регистрация участника в XXI Чемпионате Санкт-Петербурга по парикмахерскому искусству и
+                декоративной косметике</h2>
+            <h2 align="center">Выберите направление:</h2>
+        </div>
 
         <!-- <mat-card fxFlex class="example-card-width" (click)="selectCourse(1, true)">
             <mat-card-title>Парикмахерское направление</mat-card-title>
@@ -11,31 +15,65 @@
             Парикмахерское направление
         </div>
         </mat-card> -->
-        <div class="example-ripple-container mat-elevation-z4" matRipple [matRippleCentered]="centered"
-            [matRippleDisabled]="disabled" [matRippleUnbounded]="unbounded" [matRippleRadius]="radius"
-            [matRippleColor]="color" (click)="selectCourse(1, true)">
-            Парикмахерское направление
+
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="50px" fxLayoutWrap fxLayoutAlign="space-around center">
+            <!-- <div class="example-ripple-container mat-elevation-z4" matRipple [matRippleCentered]="centered"
+                [matRippleDisabled]="disabled" [matRippleUnbounded]="unbounded" [matRippleRadius]="radius"
+                [matRippleColor]="color" (click)="selectCourse(1, true)">
+                Парикмахерское направление
+            </div> -->
+            <a (click)="selectCourse(1, true)">
+                <mat-card class="card_list">
+                    <mat-card-title>Парикмахерское направление</mat-card-title>
+                </mat-card>
+            </a>
+            <a (click)="selectCourse(2, true)">
+                <mat-card class="card_list">
+                    <mat-card-title>Парикмахерское направление Юниоры</mat-card-title>
+                </mat-card>
+            </a>
+
+            <!-- <div class="example-ripple-container mat-elevation-z4" matRipple [matRippleCentered]="centered"
+                [matRippleDisabled]="disabled" [matRippleUnbounded]="unbounded" [matRippleRadius]="radius"
+                [matRippleColor]="color" (click)="selectCourse(2, true)">
+                Парикмахерское направление Юниоры
+            </div> -->
+
         </div>
 
-        <div class="example-ripple-container mat-elevation-z4" matRipple [matRippleCentered]="centered"
-            [matRippleDisabled]="disabled" [matRippleUnbounded]="unbounded" [matRippleRadius]="radius"
-            [matRippleColor]="color" (click)="selectCourse(2, true)">
-            Парикмахерское направление Юниоры
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="50px" fxLayoutWrap fxLayoutAlign="space-around center">
+            <!-- <div class="example-ripple-container mat-elevation-z4" matRipple [matRippleCentered]="centered"
+                [matRippleDisabled]="disabled" [matRippleUnbounded]="unbounded" [matRippleRadius]="radius"
+                [matRippleColor]="color" (click)="selectCourse(3, true)">
+                Моделирование и дизайн ногтей
+            </div> -->
+
+            <a (click)="selectCourse(3, true)">
+                <mat-card class="card_list">
+                        <mat-card-title>Моделирование и дизайн ногтей</mat-card-title>
+                    
+                </mat-card>
+            </a>
+            <a (click)="selectCourse(4, true)">
+                <mat-card class="card_list">
+                        <mat-card-title>ВИЗАЖИСТЫ - ЭСТЕТИКА</mat-card-title>
+                </mat-card>
+            </a>
+
+            <!-- <div class="example-ripple-container mat-elevation-z4" matRipple [matRippleCentered]="centered"
+                [matRippleDisabled]="disabled" [matRippleUnbounded]="unbounded" [matRippleRadius]="radius"
+                [matRippleColor]="color" (click)="selectCourse(4, true)">
+                ВИЗАЖИСТЫ - ЭСТЕТИКА
+            </div> -->
+
         </div>
 
-        <div class="example-ripple-container mat-elevation-z4" matRipple [matRippleCentered]="centered"
-            [matRippleDisabled]="disabled" [matRippleUnbounded]="unbounded" [matRippleRadius]="radius"
-            [matRippleColor]="color" (click)="selectCourse(3, true)">
-            Моделирование и дизайн ногтей
-        </div>
 
-        <div class="example-ripple-container mat-elevation-z4" matRipple [matRippleCentered]="centered"
-            [matRippleDisabled]="disabled" [matRippleUnbounded]="unbounded" [matRippleRadius]="radius"
-            [matRippleColor]="color" (click)="selectCourse(4, true)">
-            ВИЗАЖИСТЫ - ЭСТЕТИКА
-        </div>
 
-    </div>
+
+
+
+    </mat-card>
 </div>
 
 
@@ -152,7 +190,7 @@
             <!-- Таблица -->
             <h3>Я хотел(а) бы участвовать в следующем конкурсе:</h3>
             <br />
-            <div *ngFor="let list of currentUser.nominations" div fxLayout="column" fxLayoutAlign="start start" >
+            <div *ngFor="let list of currentUser.nominations" div fxLayout="column" fxLayoutAlign="start start">
 
                 <h3>{{list.name}}</h3>
 
@@ -165,7 +203,7 @@
                     <div fxFlex="20">стоимость участия: {{list.price}} руб.</div>
                     <div fxFlex="20">
                         <mat-checkbox [(ngModel)]="list.selected" (change)="onChanges()">
-                            
+
                         </mat-checkbox>
                     </div>
                 </div>
@@ -200,7 +238,7 @@
 
         </div>
 
-        
+
     </div>
 
 
