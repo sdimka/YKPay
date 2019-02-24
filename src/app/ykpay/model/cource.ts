@@ -12,6 +12,7 @@ export class Cource {
     mannequin: string = '';
     phone: number;
     email: string;
+    courseType: number;
     nominations: Nomination[];
     confirmPersonal: boolean;
     uuid: string;

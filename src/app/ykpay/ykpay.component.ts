@@ -124,15 +124,19 @@ export class YkpayComponent implements OnInit {
         
         result.totalSum = this.sumTotal;
 
+        result.courseType = this.currentUser.courseType;
+        result.nominations = this.currentUser.nominations;
+
         
         // IMPL new Date().toLocaleString()
-        //console.log(result);
+        console.log(result);
 
         this._ykpService.addPart(result)
             .subscribe((response) => { 
-                //console.log(response.url);
+                console.log(response.url);
                 
-                this.goToUrl(response.url); 
+                //this.goToUrl(response.url); 
+                this.IsWait = false;
             }, (error) => {
                 console.log(error);
             });
@@ -141,7 +145,7 @@ export class YkpayComponent implements OnInit {
     computeTotal(): number {
         let i = 0;
         this.currentUser.nominations.forEach(element => {
-            if (element.isSelected) {
+            if (element.selected) {
                 i = i + element.price;
             }
         });

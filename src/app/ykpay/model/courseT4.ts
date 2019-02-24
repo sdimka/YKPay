@@ -6,12 +6,13 @@ export class CourseT4 extends Cource{
     cName = 'Регистрационная форма для участия в XXI Чемпионате Санкт-Петербурга по парикмахерскому искусству и декоративной косметике (МАСТЕРА ВЗРОСЛЫЕ)';
     name: string = '';
     surname: string = '';
+    courseType = 4;
     nominations: Nomination[] = [
-        { id: 1, name: 'Подиумный макияж (на модели)', price: 3000, isSelected: false,
+        { id: 1, name: 'Подиумный макияж (на модели)', price: 3000, selected: false,
         parts: ['', '']},
-        { id: 2, name: 'Макияж новобрачной (на модели)', price: 3000, isSelected: false,
+        { id: 2, name: 'Макияж новобрачной (на модели)', price: 3000, selected: false,
         parts: ['', '']},
-        { id: 3, name: 'Боди-Арт (на модели)', price: 3000, isSelected: false,
+        { id: 3, name: 'Боди-Арт (на модели)', price: 3000, selected: false,
         parts: ['', '']}
     ];
 }

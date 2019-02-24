@@ -10,7 +10,8 @@ import { catchError } from 'rxjs/operators';
 export class YKPService{
 
     constructor(private _httpService: HttpClient){}
-    private getUrl = 'http://localhost:8080/springTest_war/api/part';
+    private getUrl = 'http://localhost:8085/Projects_war/api/part';
+    //'http://localhost:8080/springTest_war/api/part';
 
     getAllParts(): Observable<Cource[]>{
         return this._httpService.get<Array<Cource>>(this.getUrl)
