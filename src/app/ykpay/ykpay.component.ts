@@ -135,7 +135,7 @@ export class YkpayComponent implements OnInit {
             .subscribe((response) => { 
                 console.log(response.url);
                 
-                //this.goToUrl(response.url); 
+                // this.goToUrl(response.url); 
                 this.IsWait = false;
             }, (error) => {
                 console.log(error);

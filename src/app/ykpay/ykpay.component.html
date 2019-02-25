@@ -24,12 +24,12 @@
             </div> -->
             <a (click)="selectCourse(1, true)">
                 <mat-card class="card_list">
-                    <mat-card-title>Парикмахерское направление</mat-card-title>
+                    <mat-card-title>Парикмахерское искусство (мастера взрослые)</mat-card-title>
                 </mat-card>
             </a>
             <a (click)="selectCourse(2, true)">
                 <mat-card class="card_list">
-                    <mat-card-title>Парикмахерское направление Юниоры</mat-card-title>
+                    <mat-card-title>Парикмахерское искусство (юниоры)</mat-card-title>
                 </mat-card>
             </a>
 
@@ -50,13 +50,13 @@
 
             <a (click)="selectCourse(3, true)">
                 <mat-card class="card_list">
-                        <mat-card-title>Моделирование и дизайн ногтей</mat-card-title>
+                        <mat-card-title>Моделирование и дизайн ногтей (мастера взрослые)</mat-card-title>
                     
                 </mat-card>
             </a>
             <a (click)="selectCourse(4, true)">
                 <mat-card class="card_list">
-                        <mat-card-title>ВИЗАЖИСТЫ - ЭСТЕТИКА</mat-card-title>
+                        <mat-card-title>Визажисты (мастера взрослые)</mat-card-title>
                 </mat-card>
             </a>
 
@@ -106,7 +106,7 @@
                 <tr>
                     <td>
                         <mat-form-field class="example-full-width">
-                            <input matInput placeholder="Фамелия" [formControl]="complexForm.controls['surname']">
+                            <input matInput placeholder="Фамилия" [formControl]="complexForm.controls['surname']">
                             <mat-error
                                 *ngIf="!complexForm.controls['surname'].valid && complexForm.controls['surname'].touched">
                                 Это обязательное поле
