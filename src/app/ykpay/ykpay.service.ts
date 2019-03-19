@@ -12,7 +12,7 @@ export class YKPService{
     constructor(private _httpService: HttpClient){}
     private getUrl = 'http://localhost:8080/springTest_war/api/part';
     //'http://localhost:8080/springTest_war/api/part';
-    //'https://ssl.alliancebeauty.ru/ykpay/api/part';
+   
 
     getAllParts(): Observable<Cource[]>{
         return this._httpService.get<Array<Cource>>(this.getUrl)
