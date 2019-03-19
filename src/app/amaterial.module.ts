@@ -17,6 +17,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 
 import {MatChipsModule} from '@angular/material/chips';
 
+import {MatRadioModule} from '@angular/material/radio';
+
 @NgModule({
   exports: [
     BrowserAnimationsModule,
@@ -30,7 +32,8 @@ import {MatChipsModule} from '@angular/material/chips';
     MatCardModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatChipsModule
+    MatChipsModule,
+    MatRadioModule
 
   ]
 })

@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormControl, FormGroupDirective, NgForm, Validators, FormGroup, FormBuilder, } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 import { CourseT1 } from './model/courseT1';
 import { CourseT2 } from './model/courseT2';
@@ -48,7 +49,8 @@ export class YkpayComponent implements OnInit {
 
     }
 
-    constructor(@Inject(DOCUMENT) private document: any, private _ykpService: YKPService, fb: FormBuilder) {
+    constructor(@Inject(DOCUMENT) private document: any, private _ykpService: YKPService, 
+              fb: FormBuilder, public dialog: MatDialog) {
         this.complexForm = fb.group({
             // To add a validator, we must first convert the string value into an array. The first item in the array is the default value if any, then the next item in the array is the validator. Here we are adding a required validator meaning that the firstName attribute must have a value in it.
             //'firstName' : [null, Validators.required],
@@ -107,7 +109,35 @@ export class YkpayComponent implements OnInit {
 
         //console.log(result);
 
-        this.sendUserInfo('Test payment ID');
+        //this.sendUserInfo('Test payment ID');
+        
+
+        // const dialogRef = this.dialog.open(Dialog, {
+        //     width: '350px',
+        //     data: {message: "Сообщение", animal: "this.animal"}
+        //   });
+      
+        //   dialogRef.afterClosed().subscribe(result => {
+        //     console.log('The dialog was closed');
+        //     //this.animal = result;
+        //   });
+
+        this.showDialog("Test message...");
+
+    }
+
+    showDialog(messageToShow : String): void {    
+
+        const dialogRef = this.dialog.open(Dialog, {
+            width: '350px',
+            data: {message: messageToShow, animal: "this.animal"}
+          });
+      
+          dialogRef.afterClosed().subscribe(result => {
+            console.log('The dialog was closed');
+            //this.animal = result;
+          });
+
     }
 
 
@@ -129,16 +159,18 @@ export class YkpayComponent implements OnInit {
 
         
         // IMPL new Date().toLocaleString()
-        console.log(result);
+        //console.log(result);
 
         this._ykpService.addPart(result)
             .subscribe((response) => { 
-                console.log(response.url);
-                
-                // this.goToUrl(response.url); 
+                //console.log(response.url);
                 this.IsWait = false;
+                //this.goToUrl(response.url); 
+                this.document.location.href = response.url;
             }, (error) => {
-                console.log(error);
+                //console.log(error);
+                this.IsWait = false;
+                this.showDialog(error.error);
             });
     }
 
@@ -198,10 +230,10 @@ export class YkpayComponent implements OnInit {
         return 'someString';
     }
 
-    goToUrl(urlString: string): void {
-        //this.document.location.href = 'https://stackoverflow.com/' + urlString + "/";
-        this.document.location.href = urlString;
-    }
+    // goToUrl(urlString: string): void {
+    //     //this.document.location.href = 'https://stackoverflow.com/' + urlString + "/";
+    //     this.document.location.href = urlString;
+    // }
 
 
     createPayment(): void {
@@ -248,3 +280,24 @@ export class YkpayComponent implements OnInit {
     matcher = new MyErrorStateMatcher();
 
 }
+
+@Component({
+    selector: 'dialogImp',
+    templateUrl: './dialog.html',
+  })
+  export class Dialog {
+  
+    constructor(
+      public dialogRef: MatDialogRef<Dialog>,
+      @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+  
+    onNoClick(): void {
+      this.dialogRef.close();
+    }
+  
+  }
+
+  export interface DialogData {
+    message: string;
+    name: string;
+  }
