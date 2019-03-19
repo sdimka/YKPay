@@ -12,11 +12,7 @@ export class YKPService{
     constructor(private _httpService: HttpClient){}
     private getUrl = 'http://localhost:8080/springTest_war/api/part';
     //'http://localhost:8080/springTest_war/api/part';
-<<<<<<< HEAD
-    
-=======
    
->>>>>>> 1b70af0a160a8e99909443496c739f21154b2187
 
     getAllParts(): Observable<Cource[]>{
         return this._httpService.get<Array<Cource>>(this.getUrl)
